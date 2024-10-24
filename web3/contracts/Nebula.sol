@@ -23,6 +23,7 @@ contract Nebula {
         uint256 raised;
         string description;
         string image;
+        bool isWithdrawn;
         Funders[] funders;
     }
 
@@ -94,18 +95,34 @@ contract Nebula {
             revert Nebula__TransferFailed();
         }
 
-        // After successful withdrawal, delete the campaign
-        delete campaigns[_campaignId];
+        campaign.isWithdrawn = true;
     }
 
     /* Getter Functions */
     function getCampaigns() public view returns (Campaign[] memory) {
-        Campaign[] memory allCampaigns = new Campaign[](s_campaignCount);
+        uint256 activeCampaignCount = 0;
         uint256 copyofCampaignCount = s_campaignCount;
+
+        // Count how many campaigns are still active (i.e., not withdrawn)
         for (uint256 i = 0; i < copyofCampaignCount; i++) {
-            allCampaigns[i] = campaigns[i];
+            if (!campaigns[i].isWithdrawn) {
+                activeCampaignCount++;
+            }
         }
-        return allCampaigns;
+
+        // Create an array for active campaigns
+        Campaign[] memory activeCampaigns = new Campaign[](activeCampaignCount);
+        uint256 index = 0;
+
+        // Fill the array with only the active campaigns
+        for (uint256 i = 0; i < copyofCampaignCount; i++) {
+            if (!campaigns[i].isWithdrawn) {
+                activeCampaigns[index] = campaigns[i];
+                index++;
+            }
+        }
+
+        return activeCampaigns;
     }
 
     function getMyCampaigns(

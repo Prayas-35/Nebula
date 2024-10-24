@@ -30,9 +30,10 @@ import { ProgressDemo } from "@/components/functions/ProgressBar";
 import { MyCampaigns } from "@/components/functions/MyCampaigns";
 import { ThreeDCardDemo } from "@/components/functions/ThreeDCardDemo";
 import type Campaign from "@/types";
+import { address } from "app/abi";
 
 const contractABI = abi;
-const contractAddress = "0xcd6797834d00fc0Abd1E1B6c647983C38e69D3F4";
+const contractAddress = address;
 
 function SidebarDemo() {
   const account = useAccount();

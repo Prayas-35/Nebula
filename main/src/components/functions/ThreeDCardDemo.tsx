@@ -7,11 +7,14 @@ import { Input } from "@/components/ui/input";
 import { ProgressDemo } from "@/components/functions/ProgressBar";
 import abi from "app/abi";
 import type Campaign from "@/types";
+import { address } from "app/abi";
+
+
+const contractABI = abi;
+const contractAddress = address;
 
 export function ThreeDCardDemo(props: { camp: Campaign; idx: number }) {
   const { camp, idx } = props;
-  const contractABI = abi;
-  const contractAddress = "0xcd6797834d00fc0Abd1E1B6c647983C38e69D3F4";
 
   const [open, setOpen] = useState(false); // State to control fund dialog visibility
   const [ownerDialogOpen, setOwnerDialogOpen] = useState(false); // State to control owner dialog visibility

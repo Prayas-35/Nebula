@@ -6,6 +6,10 @@ import { motion } from "framer-motion";
 import { ProgressDemo } from "@/components/functions/ProgressBar";
 import abi from "app/abi";
 import type Campaign from "@/types";
+import { address } from "app/abi";
+
+const contractABI = abi;
+const contractAddress = address;
 
 export function MyCampaigns(props: { data: Campaign[] }) {
   const [transactionStatus, setTransactionStatus] = useState<string | null>(
@@ -18,8 +22,6 @@ export function MyCampaigns(props: { data: Campaign[] }) {
   const { address } = useAccount();
   console.log("props:", props.data);
   const myCamps = props.data;
-  const contractABI = abi;
-  const contractAddress = "0xcd6797834d00fc0Abd1E1B6c647983C38e69D3F4";
 
   async function withdrawFunds(idx: number) {
     console.log("Withdraw funds", idx);

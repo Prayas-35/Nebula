@@ -73,6 +73,11 @@ const abi = [
         "internalType": "string",
         "name": "image",
         "type": "string"
+      },
+      {
+        "internalType": "bool",
+        "name": "isWithdrawn",
+        "type": "bool"
       }
     ],
     "stateMutability": "view",
@@ -176,6 +181,11 @@ const abi = [
             "type": "string"
           },
           {
+            "internalType": "bool",
+            "name": "isWithdrawn",
+            "type": "bool"
+          },
+          {
             "components": [
               {
                 "internalType": "address",
@@ -254,6 +264,11 @@ const abi = [
             "type": "string"
           },
           {
+            "internalType": "bool",
+            "name": "isWithdrawn",
+            "type": "bool"
+          },
+          {
             "components": [
               {
                 "internalType": "address",
@@ -307,4 +322,7 @@ const abi = [
   }
 ];
 
+const address = "0x00A72Cc8c8ccF883e76E3bd16e73c9223ca60b57";
+
 export default abi;
+export { address };

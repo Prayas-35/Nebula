@@ -27,9 +27,10 @@ import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
+import { address } from "app/abi";
 
 const contractABI = abi;
-const contractAddress = "0xcd6797834d00fc0Abd1E1B6c647983C38e69D3F4";
+const contractAddress = address;
 
 const formSchema = z.object({
   description: z.string().min(5).max(200),
