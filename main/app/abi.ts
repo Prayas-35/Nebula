@@ -11,6 +11,11 @@ const abi = [
   },
   {
     "inputs": [],
+    "name": "Nebula__GoalReached",
+    "type": "error"
+  },
+  {
+    "inputs": [],
     "name": "Nebula__NotOwner",
     "type": "error"
   },

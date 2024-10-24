@@ -7,6 +7,7 @@ contract Nebula {
     error Nebula__TransferFailed();
     error Nebula__NotOwner();
     error Nebula__GoalNotReached();
+    error Nebula__GoalReached();
 
     struct Funders {
         address funder;
@@ -67,7 +68,9 @@ contract Nebula {
         uint256 _amount = msg.value;
         Campaign storage campaign = campaigns[_campaignId];
 
-        if (campaign.raised + _amount > campaign.goal) {
+        if (campaign.raised == campaign.goal) {
+            revert Nebula__GoalReached();
+        } else if (campaign.raised + _amount > campaign.goal) {
             payable(msg.sender).transfer(
                 uint256(campaign.raised + _amount - campaign.goal)
             );
@@ -85,12 +88,14 @@ contract Nebula {
             revert Nebula__GoalNotReached();
         }
 
+        // Transfer the raised funds to the owner
         (bool success, ) = payable(msg.sender).call{value: campaign.raised}("");
         if (!success) {
             revert Nebula__TransferFailed();
         }
 
-        campaign.raised = 0;
+        // After successful withdrawal, delete the campaign
+        delete campaigns[_campaignId];
     }
 
     /* Getter Functions */
