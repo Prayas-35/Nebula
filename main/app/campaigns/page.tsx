@@ -42,7 +42,7 @@ interface Campaign {
 }
 
 const contractABI = abi;
-const contractAddress = "0x60B543d0835f879F8F7D721Ba45BBb809Bba4a19";
+const contractAddress = "0xDE115676F736F154eEF8398A37e4ACB4d61892e6";
 
 function SidebarDemo() {
   const account = useAccount();
@@ -205,13 +205,14 @@ function SidebarDemo() {
           <div>
             <SidebarLink
               link={{
-                label: `${account?.address
-                  ? `${account?.address.slice(
-                    0,
-                    7
-                  )}...${account?.address.slice(-5)}`
-                  : "Wallet not connected"
-                  }`,
+                label: `${
+                  account?.address
+                    ? `${account?.address.slice(
+                        0,
+                        7
+                      )}...${account?.address.slice(-5)}`
+                    : "Wallet not connected"
+                }`,
                 href: "",
                 icon: (
                   <IoMdWallet className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
@@ -441,13 +442,14 @@ function ThreeDCardDemo(props: { camp: Campaign; idx: number }) {
         console.log("Index: ", idx);
         console.log("Funding amount: ", fund);
 
-        const tx = await writeContractAsync({
-          address: contractAddress,
-          abi: contractABI,
-          functionName: "fundCampaign",
-          args: [idx],
-          value: BigInt(Number(fund) * 10 ** 18),
-        },
+        const tx = await writeContractAsync(
+          {
+            address: contractAddress,
+            abi: contractABI,
+            functionName: "fundCampaign",
+            args: [idx],
+            value: BigInt(Number(fund) * 10 ** 18),
+          },
           {
             onSuccess(data) {
               console.log("Transaction successful!", data);
@@ -461,7 +463,7 @@ function ThreeDCardDemo(props: { camp: Campaign; idx: number }) {
             },
             onError(error) {
               console.error("Transaction error:", error);
-            }
+            },
           }
         );
       } catch (error) {
