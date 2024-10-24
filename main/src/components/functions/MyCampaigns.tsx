@@ -5,18 +5,7 @@ import { Lens } from "@/components/ui/lens";
 import { motion } from "framer-motion";
 import { ProgressDemo } from "@/components/functions/ProgressBar";
 import abi from "app/abi";
-
-interface Campaign {
-  owner: string;
-  id: number;
-  name: string;
-  description: string;
-  goal: number;
-  deadline: number;
-  raised: number;
-  image: string;
-  funders: { funder: string; amount: number }[];
-}
+import type Campaign from "@/types";
 
 export function MyCampaigns(props: { data: Campaign[] }) {
   const [transactionStatus, setTransactionStatus] = useState<string | null>(

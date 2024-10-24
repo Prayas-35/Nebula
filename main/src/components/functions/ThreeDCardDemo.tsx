@@ -6,18 +6,7 @@ import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { ProgressDemo } from "@/components/functions/ProgressBar";
 import abi from "app/abi";
-
-interface Campaign {
-  owner: string;
-  id: number;
-  name: string;
-  description: string;
-  goal: number;
-  deadline: number;
-  raised: number;
-  image: string;
-  funders: { funder: string; amount: number }[];
-}
+import type Campaign from "@/types";
 
 export function ThreeDCardDemo(props: { camp: Campaign; idx: number }) {
   const { camp, idx } = props;

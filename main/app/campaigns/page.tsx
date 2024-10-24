@@ -29,18 +29,7 @@ import { Input } from "@/components/ui/input";
 import { ProgressDemo } from "@/components/functions/ProgressBar";
 import { MyCampaigns } from "@/components/functions/MyCampaigns";
 import { ThreeDCardDemo } from "@/components/functions/ThreeDCardDemo";
-
-interface Campaign {
-  owner: string;
-  id: number;
-  name: string;
-  description: string;
-  goal: number;
-  deadline: number;
-  raised: number;
-  image: string;
-  funders: { funder: string; amount: number }[];
-}
+import type Campaign from "@/types";
 
 const contractABI = abi;
 const contractAddress = "0xcd6797834d00fc0Abd1E1B6c647983C38e69D3F4";
