@@ -8,8 +8,6 @@ At the heart of this platform is the concept of decentralized governance. Unlike
 
 Our project is particularly relevant in India, where many grassroots initiatives face challenges in securing funding and maintaining accountability. By providing a decentralized platform that prioritizes community involvement, we aim to empower local projects and drive positive change. 
 
-Nebula happens to be our official submission for Based India 2024.
-
 ## Key Features
 ### Campaign Creation: 
 Users can create and manage fundraising campaigns.
