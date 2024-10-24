@@ -501,7 +501,7 @@ function ThreeDCardDemo(props: { camp: Campaign; idx: number }) {
           className="text-white-500 text-sm max-w-sm mt-2 dark:text-neutral-300 flex items-center font-fredoka space-x-5"
         >
           <button className="shadow-[0_0_0_3px_#000000_inset] px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400 mt-2 disabled">
-            Goal: {Number(camp.goal) / 10 ** 18} ETH
+            Goal: {Number(camp.goal) / 10 ** 18} AIA
           </button>
           <p className="font-bold font-fredoka uppercase mt-2">
             Deadline: {timestamp}
