@@ -11,7 +11,7 @@ export const aia = {
   },
   nativeCurrency: {
     name: "AITD Testnet",
-    symbol: "AITD",
+    symbol: "AIA",
     decimals: 18,
   },
   sourceId: 1320,
