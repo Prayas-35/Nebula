@@ -65,7 +65,7 @@ export function ThreeDCardDemo(props: { camp: Campaign; idx: number; sidebarOpen
   return (
     <CardContainer
       className={`inter-var ${sidebarOpen ? "w-[50vh]" : "w-[60vh]"} transition-all`}
-      containerClassName={`${sidebarOpen ? "w-[50vh]" : "w-[60vh]"} py-4 relative flex flex-col flex-grow justify-between`}
+      containerClassName={`${sidebarOpen ? "w-[50vh]" : "w-[60vh]"} w-full py-4 relative flex flex-col flex-grow justify-between`}
     >
       <CardBody className="flex flex-col bg-gray-50 min-h-full relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
         <CardItem
