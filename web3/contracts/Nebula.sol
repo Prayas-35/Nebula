@@ -83,7 +83,10 @@ contract Nebula {
         campaign.funders.push(Funders(msg.sender, _amount));
     }
 
-    function withdrawFunds(uint256 _campaignId, string memory _proposal) public OnlyOwner(_campaignId) {
+    function withdrawFunds(
+        uint256 _campaignId,
+        string memory _proposal
+    ) public OnlyOwner(_campaignId) {
         Campaign storage campaign = campaigns[_campaignId];
 
         if (campaign.raised < campaign.goal) {
@@ -157,5 +160,40 @@ contract Nebula {
         }
 
         return myCampaigns; // Return only one array containing all campaigns with IDs
+    }
+
+    function getContributedCampaigns(
+        address _funder
+    ) public view returns (Campaign[] memory) {
+        uint256 count = 0;
+        uint256 copyofCampaignCount = s_campaignCount;
+        // Count the number of campaigns this address has contributed to
+        for (uint256 i = 0; i < copyofCampaignCount; i++) {
+            Campaign storage campaign = campaigns[i];
+            for (uint256 j = 0; j < campaign.funders.length; j++) {
+                if (campaign.funders[j].funder == _funder) {
+                    count++;
+                    break; // Move to the next campaign once a contribution is found
+                }
+            }
+        }
+
+        // Initialize the array with the counted size
+        Campaign[] memory contributedCampaigns = new Campaign[](count);
+        uint256 index = 0;
+
+        // Populate the array with campaigns contributed by _funder
+        for (uint256 i = 0; i < copyofCampaignCount; i++) {
+            Campaign storage campaign = campaigns[i];
+            for (uint256 j = 0; j < campaign.funders.length; j++) {
+                if (campaign.funders[j].funder == _funder) {
+                    contributedCampaigns[index] = campaign;
+                    index++;
+                    break;
+                }
+            }
+        }
+
+        return contributedCampaigns;
     }
 }
