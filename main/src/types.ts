@@ -9,4 +9,5 @@ export default interface Campaign {
   image: string;
   funders: { funder: string; amount: number }[];
   proposal: string;
+  isWithdrawn: boolean;
 }

@@ -129,14 +129,16 @@ export function MyCampaigns(props: { data: Campaign[] }) {
                       <button
                         className="px-3 py-4 w-[45%] rounded-full bg-[#1ED760] font-bold text-white text-xs tracking-widest uppercase transform hover:scale-105 hover:bg-[#21e065] transition-colors duration-200"
                         onClick={() => {
-                          if (camp.raised >= camp.goal) {
+                          if (camp.isWithdrawn) {
+                            alert("Funds already withdrawn.");
+                          } else if (camp.raised >= camp.goal) {
                             setOpen(true);
                           } else {
                             alert("Goal not reached. Cannot withdraw funds.");
                           }
                         }}
                       >
-                        Withdraw
+                        {camp.isWithdrawn ? "Withdrawn" : "Withdraw"}
                       </button>
                     </div>
                   </motion.div>
