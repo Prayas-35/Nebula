@@ -25,6 +25,7 @@ contract Nebula {
         string image;
         bool isWithdrawn;
         Funders[] funders;
+        string proposal; // New field to store the proposal
     }
 
     mapping(uint256 => Campaign) public campaigns;
@@ -82,12 +83,15 @@ contract Nebula {
         campaign.funders.push(Funders(msg.sender, _amount));
     }
 
-    function withdrawFunds(uint256 _campaignId) public OnlyOwner(_campaignId) {
+    function withdrawFunds(uint256 _campaignId, string memory _proposal) public OnlyOwner(_campaignId) {
         Campaign storage campaign = campaigns[_campaignId];
 
         if (campaign.raised < campaign.goal) {
             revert Nebula__GoalNotReached();
         }
+
+        // Save the proposal before withdrawal
+        campaign.proposal = _proposal;
 
         // Transfer the raised funds to the owner
         (bool success, ) = payable(msg.sender).call{value: campaign.raised}("");

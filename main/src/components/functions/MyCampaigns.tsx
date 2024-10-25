@@ -196,6 +196,9 @@ export function MyCampaigns(props: { data: Campaign[] }) {
                           </div>
                         </form>
                       </Form>
+                      <p className="text-white text-center mt-4">
+                        {camp.proposal}
+                      </p>
                     </DialogContent>
                   ) : (
                     <DialogContent className="w-68">
