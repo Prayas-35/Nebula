@@ -5,7 +5,6 @@ import { Lens } from "@/components/ui/lens";
 import { motion } from "framer-motion";
 import { ProgressDemo } from "@/components/functions/ProgressBar";
 import abi from "app/abi";
-import type Campaign from "@/types";
 import { address } from "app/abi";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -20,7 +19,7 @@ import { z, isValid } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import type Campaign from "@/types";
 
 const contractABI = abi;
 const contractAddress = address;
@@ -49,7 +48,7 @@ export function MyCampaigns(props: { data: Campaign[] }) {
     },
   });
 
-  async function withdrawFunds(idx: number) {
+  async function withdrawFunds(idx: number, proposal: string) {
     console.log("Withdraw funds", idx);
     try {
       // Call the smart contract function with form data using writeContractAsync
@@ -58,7 +57,7 @@ export function MyCampaigns(props: { data: Campaign[] }) {
           address: contractAddress,
           abi: contractABI,
           functionName: "withdrawFunds",
-          args: [idx],
+          args: [idx, proposal],
         },
         {
           onSuccess(data: any) {
@@ -130,7 +129,13 @@ export function MyCampaigns(props: { data: Campaign[] }) {
                       />
                       <button
                         className="px-3 py-4 w-[45%] rounded-full bg-[#1ED760] font-bold text-white text-xs tracking-widest uppercase transform hover:scale-105 hover:bg-[#21e065] transition-colors duration-200"
-                        onClick={() => setOpen(true)}
+                        onClick={() => {
+                          if (camp.raised >= camp.goal) {
+                            setOpen(true);
+                          } else {
+                            alert("Goal not reached. Cannot withdraw funds.");
+                          }
+                        }}
                       >
                         Withdraw
                       </button>
@@ -147,7 +152,11 @@ export function MyCampaigns(props: { data: Campaign[] }) {
                             const result = formSchema.safeParse(data);
                             if (result.success) {
                               // Call withdrawFunds with the campaign id and close dialog if valid
-                              await withdrawFunds(Number(camp.id));
+                              console.log("Proposal:", data.proposal);
+                              await withdrawFunds(
+                                Number(camp.id),
+                                data.proposal
+                              );
                               setOpen(false);
                             }
                           })}

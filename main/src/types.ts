@@ -8,4 +8,5 @@ export default interface Campaign {
   raised: number;
   image: string;
   funders: { funder: string; amount: number }[];
+  proposal: string;
 }
