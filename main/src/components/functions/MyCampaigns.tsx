@@ -127,7 +127,9 @@ export function MyCampaigns(props: { data: Campaign[] }) {
                         goal={Number(camp.goal)}
                       />
                       <button
-                        className="px-3 py-4 w-[45%] rounded-full bg-[#1ED760] font-bold text-white text-xs tracking-widest uppercase transform hover:scale-105 hover:bg-[#21e065] transition-colors duration-200"
+                        className={`px-3 py-4 w-[45%] rounded-full ${
+                          camp.isWithdrawn ? `bg-zinc-800` : `bg-[#1ED760] `
+                        } font-bold text-white text-xs tracking-widest uppercase transform hover:scale-105  transition-colors duration-200`}
                         onClick={() => {
                           if (camp.isWithdrawn) {
                             alert("Funds already withdrawn.");

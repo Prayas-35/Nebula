@@ -27,8 +27,6 @@ export function ProgressDemo({ raised, goal }: ProgressProps) {
         Raised: {raised / 10 ** 18} / {goal / 10 ** 18} AIA
       </p>
       <Progress value={progress} className="w-[95%]" />
-      {/* Adjust the width as needed */}
-      {/* <p>{progress.toFixed(2)}%</p> Display the progress percentage */}
     </div>
   );
 }
