@@ -99,7 +99,7 @@ export function MyCampaigns(props: { data: Campaign[] }) {
           myCamps.length > 0 ? (
             myCamps.map((camp, index) => (
               <div
-                className="w-96 relative rounded-3xl overflow-hidden max-w-full bg-gradient-to-r from-[#1D2235] to-[#121318] my-10"
+                className="w-96 relative rounded-3xl overflow-hidden max-w-full bg-gradient-to-r dark:from-[#1D2235] dark:to-[#121318] from-[#E8ECF3] to-[#F5F7FA] my-10"
                 key={index}
               >
                 <div className="relative z-10">
@@ -113,13 +113,13 @@ export function MyCampaigns(props: { data: Campaign[] }) {
                     />
                   </Lens>
                   <motion.div className="py-4 relative z-20 px-4 pt-4 sm:px-6 sm:pt-6 md:px-8 md:pt-8">
-                    <h2 className="text-white text-lg sm:text-xl md:text-2xl font-bold text-left">
+                    <h2 className="text-text text-lg sm:text-xl md:text-2xl font-bold text-left">
                       {camp.name}
                     </h2>
-                    <p className="text-neutral-200 text-left my-4 text-sm sm:text-base md:text-base font-fredoka">
+                    <p className="text-text text-left my-4 text-sm sm:text-base md:text-base font-fredoka">
                       {camp.description}
                     </p>
-                    <button className="shadow-[0_0_0_3px_#000000_inset] px-2 w-32 text-base py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400 mt-2 disabled">
+                    <button className="shadow-[0_0_0_3px_#000000_inset] px-2 w-32 text-base py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400 mt-2 disabled cursor-default">
                       Goal: {Number(camp.goal) / 10 ** 18} AIA
                     </button>
                     <div className="flex justify-between items-center mt-4 w-full gap-10 text-base">

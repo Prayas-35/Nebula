@@ -11,8 +11,8 @@ import type Campaign from "@/types";
 const contractABI = abi;
 const contractAddress = address;
 
-export function ThreeDCardDemo(props: { camp: Campaign; idx: number }) {
-  const { camp, idx } = props;
+export function ThreeDCardDemo(props: { camp: Campaign; idx: number; sidebarOpen: boolean }) {
+  const { camp, idx, sidebarOpen } = props;
 
   const [open, setOpen] = useState(false); // State to control fund dialog visibility
   const [ownerDialogOpen, setOwnerDialogOpen] = useState(false); // State to control owner dialog visibility
@@ -64,8 +64,8 @@ export function ThreeDCardDemo(props: { camp: Campaign; idx: number }) {
 
   return (
     <CardContainer
-      className="inter-var w-[60vh]"
-      containerClassName="w-[60vh] py-4 relative flex flex-col flex-grow justify-between"
+      className={`inter-var ${sidebarOpen ? "w-[50vh]" : "w-[60vh]"} transition-all`}
+      containerClassName={`${sidebarOpen ? "w-[50vh]" : "w-[60vh]"} py-4 relative flex flex-col flex-grow justify-between`}
     >
       <CardBody className="flex flex-col bg-gray-50 min-h-full relative group/card dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border">
         <CardItem
@@ -86,7 +86,7 @@ export function ThreeDCardDemo(props: { camp: Campaign; idx: number }) {
           translateZ="60"
           className="text-white-500 text-sm max-w-sm mt-2 dark:text-neutral-300 flex items-center font-fredoka space-x-5"
         >
-          <button className="shadow-[0_0_0_3px_#000000_inset] px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400 mt-2 disabled">
+          <button className="shadow-[0_0_0_3px_#000000_inset] px-6 py-2 cursor-auto bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400 mt-2 disabled">
             Goal: {Number(camp.goal) / 10 ** 18} AIA
           </button>
           <p className="font-bold font-fredoka uppercase mt-2">

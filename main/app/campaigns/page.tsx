@@ -24,6 +24,7 @@ import abi, { address } from "app/abi";
 import { MyCampaigns } from "@/components/functions/MyCampaigns";
 import { ThreeDCardDemo } from "@/components/functions/ThreeDCardDemo";
 import type Campaign from "@/types";
+import { SidebarOpen } from "lucide-react";
 
 const contractABI = abi;
 const contractAddress = address;
@@ -209,7 +210,7 @@ function SidebarDemo() {
 
       {/* Conditionally render content based on activeTab */}
       <div className="p-2 md:p-10 rounded-tl-2xl border border-neutral-200 dark:border-neutral-700 bg-white dark:bg-neutral-900 flex flex-col gap-2 flex-1 w-full h-full relative overflow-y-auto">
-        {activeTab === "dashboard" && <Dashboard camps={campaigns} />}
+        {activeTab === "dashboard" && <Dashboard camps={campaigns} sidebarOpen={open} />}
         {activeTab === "my-campaigns" && (
           <MyCampaigns data={myData.data as Campaign[]} />
         )}
@@ -218,8 +219,9 @@ function SidebarDemo() {
   );
 }
 
-function Dashboard(props: { camps: Campaign[] }) {
+function Dashboard(props: { camps: Campaign[]; sidebarOpen: boolean }) {
   const campaigns = props.camps;
+  const sidebarOpen = props.sidebarOpen;
   console.log(campaigns);
 
   return (
@@ -231,7 +233,7 @@ function Dashboard(props: { camps: Campaign[] }) {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {campaigns.length > 0 ? (
           campaigns.map((campaign, index) => (
-            <ThreeDCardDemo camp={campaign} idx={index} key={index} />
+            <ThreeDCardDemo camp={campaign} idx={index} key={index} sidebarOpen={sidebarOpen} />
           ))
         ) : (
           <p>No campaigns available.</p>
