@@ -4,8 +4,7 @@ import Image from "next/image";
 import { Lens } from "@/components/ui/lens";
 import { motion } from "framer-motion";
 import { ProgressDemo } from "@/components/functions/ProgressBar";
-import abi from "app/abi";
-import { address } from "app/abi";
+import abi, { address } from "app/abi";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import {

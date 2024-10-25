@@ -14,7 +14,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import abi from "app/abi";
+import abi, { address } from "app/abi";
 import { useAccount, useWriteContract } from "wagmi";
 import {
   Popover,
@@ -27,7 +27,6 @@ import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { address } from "app/abi";
 
 const contractABI = abi;
 const contractAddress = address;

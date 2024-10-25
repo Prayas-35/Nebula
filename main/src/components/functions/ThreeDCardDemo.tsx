@@ -5,9 +5,8 @@ import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { ProgressDemo } from "@/components/functions/ProgressBar";
-import abi from "app/abi";
+import abi, { address } from "app/abi";
 import type Campaign from "@/types";
-import { address } from "app/abi";
 
 const contractABI = abi;
 const contractAddress = address;

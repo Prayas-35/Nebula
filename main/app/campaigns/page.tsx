@@ -13,24 +13,17 @@ import {
   useWriteContract,
 } from "wagmi";
 import { useRouter } from "next/navigation";
-// import { Button } from "@/components/ui/button";
 import { IoMdWallet } from "react-icons/io";
-import { Lens } from "@/components/ui/lens";
 import {
   IconArrowLeft,
   IconBrandTabler,
   IconUserBolt,
 } from "@tabler/icons-react";
 import AddCampaign from "@/components/functions/AddCampaign";
-import abi from "app/abi";
-import { CardContainer, CardBody, CardItem } from "@/components/ui/3d-card";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { ProgressDemo } from "@/components/functions/ProgressBar";
+import abi, { address } from "app/abi";
 import { MyCampaigns } from "@/components/functions/MyCampaigns";
 import { ThreeDCardDemo } from "@/components/functions/ThreeDCardDemo";
 import type Campaign from "@/types";
-import { address } from "app/abi";
 
 const contractABI = abi;
 const contractAddress = address;
