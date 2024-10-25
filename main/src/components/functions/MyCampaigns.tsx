@@ -7,6 +7,8 @@ import { ProgressDemo } from "@/components/functions/ProgressBar";
 import abi from "app/abi";
 import type Campaign from "@/types";
 import { address } from "app/abi";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 
 const contractABI = abi;
 const contractAddress = address;
@@ -22,10 +24,11 @@ export function MyCampaigns(props: { data: Campaign[] }) {
   const { address } = useAccount();
   console.log("props:", props.data);
   const myCamps = props.data;
+  const [open, setOpen] = useState(false);
+  const [proposal, setProposal] = useState<string>("");
 
   async function withdrawFunds(idx: number) {
     console.log("Withdraw funds", idx);
-
     try {
       // Call the smart contract function with form data using writeContractAsync
       const tx = await writeContractAsync(
@@ -105,13 +108,44 @@ export function MyCampaigns(props: { data: Campaign[] }) {
                       />
                       <button
                         className="px-3 py-4 w-[40%] rounded-full bg-[#1ED760] font-bold text-white text-xs tracking-widest uppercase transform hover:scale-105 hover:bg-[#21e065] transition-colors duration-200"
-                        onClick={() => withdrawFunds(Number(camp.id))}
+                        onClick={() => setOpen(true)}
                       >
                         Withdraw
                       </button>
                     </div>
                   </motion.div>
                 </div>
+                <Dialog open={open} onOpenChange={setOpen}>
+                  {address ? (
+                    <DialogContent className="w-68">
+                      <Input
+                        placeholder="State your proposal"
+                        type="text"
+                        className="w-52 mt-4"
+                        value={proposal}
+                        onChange={(e) => setProposal(e.target.value)}
+                      />
+                      <button
+                        className="px-8 py-2 rounded-md bg-teal-500 text-white font-bold transition duration-200 hover:bg-white hover:text-black border-2 border-transparent hover:border-teal-500"
+                        onClick={() => {
+                          if (proposal !== "") {
+                            setOpen(false);
+                            withdrawFunds(Number(camp.id));
+                          } else {
+                            console.error("Proposal cannot be empty.");
+                            alert("Proposal cannot be empty.");
+                          }
+                        }}
+                      >
+                        Submit
+                      </button>
+                    </DialogContent>
+                  ) : (
+                    <DialogContent className="w-68">
+                      <p>Please connect your wallet to fund this campaign.</p>
+                    </DialogContent>
+                  )}
+                </Dialog>
               </div>
             ))
           ) : (

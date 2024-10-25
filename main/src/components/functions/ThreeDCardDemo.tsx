@@ -9,7 +9,6 @@ import abi from "app/abi";
 import type Campaign from "@/types";
 import { address } from "app/abi";
 
-
 const contractABI = abi;
 const contractAddress = address;
 
@@ -18,10 +17,8 @@ export function ThreeDCardDemo(props: { camp: Campaign; idx: number }) {
 
   const [open, setOpen] = useState(false); // State to control fund dialog visibility
   const [ownerDialogOpen, setOwnerDialogOpen] = useState(false); // State to control owner dialog visibility
-  // const [raised, setRaised] = useState<number>(0);
   const [fund, setFund] = useState<string>(""); // State to store fund input as a string
   const { address } = useAccount();
-  // type CampaignData = [number, string, string, number, number, number, string, string];
   console.log("Campaign data:", camp);
   const { writeContractAsync } = useWriteContract();
 
@@ -143,7 +140,6 @@ export function ThreeDCardDemo(props: { camp: Campaign; idx: number }) {
         </div>
       </CardBody>
 
-      {/* Dialog for funding */}
       <Dialog open={open} onOpenChange={setOpen}>
         {address ? (
           <DialogContent className="w-68">
