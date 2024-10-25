@@ -9,9 +9,25 @@ import type Campaign from "@/types";
 import { address } from "app/abi";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form";
+import { z, isValid } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const contractABI = abi;
 const contractAddress = address;
+
+const formSchema = z.object({
+  proposal: z.string().min(10),
+});
 
 export function MyCampaigns(props: { data: Campaign[] }) {
   const [transactionStatus, setTransactionStatus] = useState<string | null>(
@@ -25,7 +41,13 @@ export function MyCampaigns(props: { data: Campaign[] }) {
   console.log("props:", props.data);
   const myCamps = props.data;
   const [open, setOpen] = useState(false);
-  const [proposal, setProposal] = useState<string>("");
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      proposal: "",
+    },
+  });
 
   async function withdrawFunds(idx: number) {
     console.log("Withdraw funds", idx);
@@ -101,13 +123,13 @@ export function MyCampaigns(props: { data: Campaign[] }) {
                     <button className="shadow-[0_0_0_3px_#000000_inset] px-2 w-32 text-base py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400 mt-2 disabled">
                       Goal: {Number(camp.goal) / 10 ** 18} ETH
                     </button>
-                    <div className="flex justify-evenly items-center mt-4 w-[90%] gap-10 text-base">
+                    <div className="flex justify-between items-center mt-4 w-full gap-10 text-base">
                       <ProgressDemo
                         raised={Number(camp.raised)}
                         goal={Number(camp.goal)}
                       />
                       <button
-                        className="px-3 py-4 w-[40%] rounded-full bg-[#1ED760] font-bold text-white text-xs tracking-widest uppercase transform hover:scale-105 hover:bg-[#21e065] transition-colors duration-200"
+                        className="px-3 py-4 w-[45%] rounded-full bg-[#1ED760] font-bold text-white text-xs tracking-widest uppercase transform hover:scale-105 hover:bg-[#21e065] transition-colors duration-200"
                         onClick={() => setOpen(true)}
                       >
                         Withdraw
@@ -117,28 +139,54 @@ export function MyCampaigns(props: { data: Campaign[] }) {
                 </div>
                 <Dialog open={open} onOpenChange={setOpen}>
                   {address ? (
-                    <DialogContent className="w-68">
-                      <Input
-                        placeholder="State your proposal"
-                        type="text"
-                        className="w-52 mt-4"
-                        value={proposal}
-                        onChange={(e) => setProposal(e.target.value)}
-                      />
-                      <button
-                        className="px-8 py-2 rounded-md bg-teal-500 text-white font-bold transition duration-200 hover:bg-white hover:text-black border-2 border-transparent hover:border-teal-500"
-                        onClick={() => {
-                          if (proposal !== "") {
-                            setOpen(false);
-                            withdrawFunds(Number(camp.id));
-                          } else {
-                            console.error("Proposal cannot be empty.");
-                            alert("Proposal cannot be empty.");
-                          }
-                        }}
-                      >
-                        Submit
-                      </button>
+                    <DialogContent className="w-full border-none">
+                      <Form {...form}>
+                        <form
+                          onSubmit={form.handleSubmit(async (data) => {
+                            // Validate the form data
+                            const result = formSchema.safeParse(data);
+                            if (result.success) {
+                              // Call withdrawFunds with the campaign id and close dialog if valid
+                              await withdrawFunds(Number(camp.id));
+                              setOpen(false);
+                            }
+                          })}
+                          className="space-y-4"
+                        >
+                          <FormField
+                            control={form.control}
+                            name="proposal"
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormControl>
+                                  <Input
+                                    placeholder="Write a Proposal For Withdrawal"
+                                    className="mt-5"
+                                    {...field}
+                                  />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                          <div className="flex justify-between w-[100%] font-fredoka items-center">
+                            <span>
+                              Check out this{" "}
+                              <a
+                                href="https://jmp.sh/s/eZBvzt1GGs68cvbOdMAk"
+                                className="text-text font-bold text-yellow-400 underline"
+                                target="_blank"
+                              >
+                                Example
+                              </a>{" "}
+                              for inspiration
+                            </span>
+                            <Button type="submit">
+                              <span>Withdraw</span>
+                            </Button>
+                          </div>
+                        </form>
+                      </Form>
                     </DialogContent>
                   ) : (
                     <DialogContent className="w-68">
