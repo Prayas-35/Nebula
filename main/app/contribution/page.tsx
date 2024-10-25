@@ -68,6 +68,7 @@ export default function Contribution() {
         {loading ? (
           <Loader />
         ) : address ? (
+          contriCamps &&
           contriCamps.length > 0 ? (
             contriCamps.map((camp, index) => {
               const raisedInAIA = Number(camp.raised) / 10 ** 18;
