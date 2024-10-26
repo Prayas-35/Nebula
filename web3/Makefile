@@ -12,7 +12,7 @@ verify:
 	elif [ "$(network)" = "basesepolia" ]; then \
 		npx hardhat verify --network baseSepolia 0x60B543d0835f879F8F7D721Ba45BBb809Bba4a19; \
 	elif [ "$(network)" = "aia" ]; then \
-		npx hardhat verify --network aia 0x3825b11E1e3230F17ca89301B8A0cC0846FAF3aF; \
+		npx hardhat verify --network aia 0xb6b56022fd60e9d59435319486495dA9C39229E4; \
 	else \
 		echo "Please specify a valid network (sepolia, amoy, or basesepolia)."; \
 	fi

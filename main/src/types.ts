@@ -7,7 +7,7 @@ export default interface Campaign {
   deadline: number;
   raised: number;
   image: string;
-  funders: { funder: string; amount: number }[];
+  funders: { funder: string; amount: number; votingPower: number }[];
   proposal: string;
   isWithdrawn: boolean;
 }

@@ -1,436 +1,451 @@
 const abi = [
   {
-    "inputs": [],
-    "name": "Nebula__DeadlineMustBeInTheFuture",
-    "type": "error"
+    inputs: [],
+    name: "Nebula__DeadlineMustBeInTheFuture",
+    type: "error",
   },
   {
-    "inputs": [],
-    "name": "Nebula__GoalNotReached",
-    "type": "error"
+    inputs: [],
+    name: "Nebula__GoalNotReached",
+    type: "error",
   },
   {
-    "inputs": [],
-    "name": "Nebula__GoalReached",
-    "type": "error"
+    inputs: [],
+    name: "Nebula__GoalReached",
+    type: "error",
   },
   {
-    "inputs": [],
-    "name": "Nebula__NotOwner",
-    "type": "error"
+    inputs: [],
+    name: "Nebula__NotOwner",
+    type: "error",
   },
   {
-    "inputs": [],
-    "name": "Nebula__TransferFailed",
-    "type": "error"
+    inputs: [],
+    name: "Nebula__TransferFailed",
+    type: "error",
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
     ],
-    "name": "campaigns",
-    "outputs": [
+    name: "campaigns",
+    outputs: [
       {
-        "internalType": "uint256",
-        "name": "id",
-        "type": "uint256"
+        internalType: "uint256",
+        name: "id",
+        type: "uint256",
       },
       {
-        "internalType": "address",
-        "name": "owner",
-        "type": "address"
+        internalType: "address",
+        name: "owner",
+        type: "address",
       },
       {
-        "internalType": "string",
-        "name": "name",
-        "type": "string"
+        internalType: "string",
+        name: "name",
+        type: "string",
       },
       {
-        "internalType": "uint256",
-        "name": "goal",
-        "type": "uint256"
+        internalType: "uint256",
+        name: "goal",
+        type: "uint256",
       },
       {
-        "internalType": "uint256",
-        "name": "deadline",
-        "type": "uint256"
+        internalType: "uint256",
+        name: "deadline",
+        type: "uint256",
       },
       {
-        "internalType": "uint256",
-        "name": "raised",
-        "type": "uint256"
+        internalType: "uint256",
+        name: "raised",
+        type: "uint256",
       },
       {
-        "internalType": "string",
-        "name": "description",
-        "type": "string"
+        internalType: "string",
+        name: "description",
+        type: "string",
       },
       {
-        "internalType": "string",
-        "name": "image",
-        "type": "string"
+        internalType: "string",
+        name: "image",
+        type: "string",
       },
       {
-        "internalType": "bool",
-        "name": "isWithdrawn",
-        "type": "bool"
+        internalType: "bool",
+        name: "isWithdrawn",
+        type: "bool",
       },
       {
-        "internalType": "string",
-        "name": "proposal",
-        "type": "string"
-      }
+        internalType: "string",
+        name: "proposal",
+        type: "string",
+      },
     ],
-    "stateMutability": "view",
-    "type": "function"
+    stateMutability: "view",
+    type: "function",
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "string",
-        "name": "_name",
-        "type": "string"
+        internalType: "string",
+        name: "_name",
+        type: "string",
       },
       {
-        "internalType": "uint256",
-        "name": "_goal",
-        "type": "uint256"
+        internalType: "uint256",
+        name: "_goal",
+        type: "uint256",
       },
       {
-        "internalType": "uint256",
-        "name": "_deadline",
-        "type": "uint256"
+        internalType: "uint256",
+        name: "_deadline",
+        type: "uint256",
       },
       {
-        "internalType": "string",
-        "name": "_description",
-        "type": "string"
+        internalType: "string",
+        name: "_description",
+        type: "string",
       },
       {
-        "internalType": "string",
-        "name": "_image",
-        "type": "string"
+        internalType: "string",
+        name: "_image",
+        type: "string",
       },
       {
-        "internalType": "address",
-        "name": "_owner",
-        "type": "address"
-      }
+        internalType: "address",
+        name: "_owner",
+        type: "address",
+      },
     ],
-    "name": "createCampaign",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
+    name: "createCampaign",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "uint256",
-        "name": "_campaignId",
-        "type": "uint256"
-      }
+        internalType: "uint256",
+        name: "_campaignId",
+        type: "uint256",
+      },
     ],
-    "name": "fundCampaign",
-    "outputs": [],
-    "stateMutability": "payable",
-    "type": "function"
+    name: "fundCampaign",
+    outputs: [],
+    stateMutability: "payable",
+    type: "function",
   },
   {
-    "inputs": [],
-    "name": "getCampaigns",
-    "outputs": [
+    inputs: [],
+    name: "getCampaigns",
+    outputs: [
       {
-        "components": [
+        components: [
           {
-            "internalType": "uint256",
-            "name": "id",
-            "type": "uint256"
+            internalType: "uint256",
+            name: "id",
+            type: "uint256",
           },
           {
-            "internalType": "address",
-            "name": "owner",
-            "type": "address"
+            internalType: "address",
+            name: "owner",
+            type: "address",
           },
           {
-            "internalType": "string",
-            "name": "name",
-            "type": "string"
+            internalType: "string",
+            name: "name",
+            type: "string",
           },
           {
-            "internalType": "uint256",
-            "name": "goal",
-            "type": "uint256"
+            internalType: "uint256",
+            name: "goal",
+            type: "uint256",
           },
           {
-            "internalType": "uint256",
-            "name": "deadline",
-            "type": "uint256"
+            internalType: "uint256",
+            name: "deadline",
+            type: "uint256",
           },
           {
-            "internalType": "uint256",
-            "name": "raised",
-            "type": "uint256"
+            internalType: "uint256",
+            name: "raised",
+            type: "uint256",
           },
           {
-            "internalType": "string",
-            "name": "description",
-            "type": "string"
+            internalType: "string",
+            name: "description",
+            type: "string",
           },
           {
-            "internalType": "string",
-            "name": "image",
-            "type": "string"
+            internalType: "string",
+            name: "image",
+            type: "string",
           },
           {
-            "internalType": "bool",
-            "name": "isWithdrawn",
-            "type": "bool"
+            internalType: "bool",
+            name: "isWithdrawn",
+            type: "bool",
           },
           {
-            "components": [
+            components: [
               {
-                "internalType": "address",
-                "name": "funder",
-                "type": "address"
+                internalType: "address",
+                name: "funder",
+                type: "address",
               },
               {
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-              }
-            ],
-            "internalType": "struct Nebula.Funders[]",
-            "name": "funders",
-            "type": "tuple[]"
-          },
-          {
-            "internalType": "string",
-            "name": "proposal",
-            "type": "string"
-          }
-        ],
-        "internalType": "struct Nebula.Campaign[]",
-        "name": "",
-        "type": "tuple[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "_funder",
-        "type": "address"
-      }
-    ],
-    "name": "getContributedCampaigns",
-    "outputs": [
-      {
-        "components": [
-          {
-            "internalType": "uint256",
-            "name": "id",
-            "type": "uint256"
-          },
-          {
-            "internalType": "address",
-            "name": "owner",
-            "type": "address"
-          },
-          {
-            "internalType": "string",
-            "name": "name",
-            "type": "string"
-          },
-          {
-            "internalType": "uint256",
-            "name": "goal",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "deadline",
-            "type": "uint256"
-          },
-          {
-            "internalType": "uint256",
-            "name": "raised",
-            "type": "uint256"
-          },
-          {
-            "internalType": "string",
-            "name": "description",
-            "type": "string"
-          },
-          {
-            "internalType": "string",
-            "name": "image",
-            "type": "string"
-          },
-          {
-            "internalType": "bool",
-            "name": "isWithdrawn",
-            "type": "bool"
-          },
-          {
-            "components": [
-              {
-                "internalType": "address",
-                "name": "funder",
-                "type": "address"
+                internalType: "uint256",
+                name: "amount",
+                type: "uint256",
               },
               {
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-              }
+                internalType: "uint256",
+                name: "votingPower",
+                type: "uint256",
+              },
             ],
-            "internalType": "struct Nebula.Funders[]",
-            "name": "funders",
-            "type": "tuple[]"
+            internalType: "struct Nebula.Funders[]",
+            name: "funders",
+            type: "tuple[]",
           },
           {
-            "internalType": "string",
-            "name": "proposal",
-            "type": "string"
-          }
+            internalType: "string",
+            name: "proposal",
+            type: "string",
+          },
         ],
-        "internalType": "struct Nebula.Campaign[]",
-        "name": "",
-        "type": "tuple[]"
-      }
+        internalType: "struct Nebula.Campaign[]",
+        name: "",
+        type: "tuple[]",
+      },
     ],
-    "stateMutability": "view",
-    "type": "function"
+    stateMutability: "view",
+    type: "function",
   },
   {
-    "inputs": [
+    inputs: [
       {
-        "internalType": "address",
-        "name": "_owner",
-        "type": "address"
-      }
+        internalType: "address",
+        name: "_funder",
+        type: "address",
+      },
     ],
-    "name": "getMyCampaigns",
-    "outputs": [
+    name: "getContributedCampaigns",
+    outputs: [
       {
-        "components": [
+        components: [
           {
-            "internalType": "uint256",
-            "name": "id",
-            "type": "uint256"
+            internalType: "uint256",
+            name: "id",
+            type: "uint256",
           },
           {
-            "internalType": "address",
-            "name": "owner",
-            "type": "address"
+            internalType: "address",
+            name: "owner",
+            type: "address",
           },
           {
-            "internalType": "string",
-            "name": "name",
-            "type": "string"
+            internalType: "string",
+            name: "name",
+            type: "string",
           },
           {
-            "internalType": "uint256",
-            "name": "goal",
-            "type": "uint256"
+            internalType: "uint256",
+            name: "goal",
+            type: "uint256",
           },
           {
-            "internalType": "uint256",
-            "name": "deadline",
-            "type": "uint256"
+            internalType: "uint256",
+            name: "deadline",
+            type: "uint256",
           },
           {
-            "internalType": "uint256",
-            "name": "raised",
-            "type": "uint256"
+            internalType: "uint256",
+            name: "raised",
+            type: "uint256",
           },
           {
-            "internalType": "string",
-            "name": "description",
-            "type": "string"
+            internalType: "string",
+            name: "description",
+            type: "string",
           },
           {
-            "internalType": "string",
-            "name": "image",
-            "type": "string"
+            internalType: "string",
+            name: "image",
+            type: "string",
           },
           {
-            "internalType": "bool",
-            "name": "isWithdrawn",
-            "type": "bool"
+            internalType: "bool",
+            name: "isWithdrawn",
+            type: "bool",
           },
           {
-            "components": [
+            components: [
               {
-                "internalType": "address",
-                "name": "funder",
-                "type": "address"
+                internalType: "address",
+                name: "funder",
+                type: "address",
               },
               {
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-              }
+                internalType: "uint256",
+                name: "amount",
+                type: "uint256",
+              },
+              {
+                internalType: "uint256",
+                name: "votingPower",
+                type: "uint256",
+              },
             ],
-            "internalType": "struct Nebula.Funders[]",
-            "name": "funders",
-            "type": "tuple[]"
+            internalType: "struct Nebula.Funders[]",
+            name: "funders",
+            type: "tuple[]",
           },
           {
-            "internalType": "string",
-            "name": "proposal",
-            "type": "string"
-          }
+            internalType: "string",
+            name: "proposal",
+            type: "string",
+          },
         ],
-        "internalType": "struct Nebula.Campaign[]",
-        "name": "",
-        "type": "tuple[]"
-      }
+        internalType: "struct Nebula.Campaign[]",
+        name: "",
+        type: "tuple[]",
+      },
     ],
-    "stateMutability": "view",
-    "type": "function"
+    stateMutability: "view",
+    type: "function",
   },
   {
-    "inputs": [],
-    "name": "s_campaignCount",
-    "outputs": [
+    inputs: [
       {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
+        internalType: "address",
+        name: "_owner",
+        type: "address",
+      },
     ],
-    "stateMutability": "view",
-    "type": "function"
+    name: "getMyCampaigns",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "uint256",
+            name: "id",
+            type: "uint256",
+          },
+          {
+            internalType: "address",
+            name: "owner",
+            type: "address",
+          },
+          {
+            internalType: "string",
+            name: "name",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "goal",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "deadline",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "raised",
+            type: "uint256",
+          },
+          {
+            internalType: "string",
+            name: "description",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "image",
+            type: "string",
+          },
+          {
+            internalType: "bool",
+            name: "isWithdrawn",
+            type: "bool",
+          },
+          {
+            components: [
+              {
+                internalType: "address",
+                name: "funder",
+                type: "address",
+              },
+              {
+                internalType: "uint256",
+                name: "amount",
+                type: "uint256",
+              },
+              {
+                internalType: "uint256",
+                name: "votingPower",
+                type: "uint256",
+              },
+            ],
+            internalType: "struct Nebula.Funders[]",
+            name: "funders",
+            type: "tuple[]",
+          },
+          {
+            internalType: "string",
+            name: "proposal",
+            type: "string",
+          },
+        ],
+        internalType: "struct Nebula.Campaign[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
   },
   {
-    "inputs": [
+    inputs: [],
+    name: "s_campaignCount",
+    outputs: [
       {
-        "internalType": "uint256",
-        "name": "_campaignId",
-        "type": "uint256"
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_campaignId",
+        type: "uint256",
       },
       {
-        "internalType": "string",
-        "name": "_proposal",
-        "type": "string"
-      }
+        internalType: "string",
+        name: "_proposal",
+        type: "string",
+      },
     ],
-    "name": "withdrawFunds",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  }
+    name: "withdrawFunds",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
 ];
 
-const address = "0x3825b11E1e3230F17ca89301B8A0cC0846FAF3aF";
+const address = "0xb6b56022fd60e9d59435319486495dA9C39229E4";
 
 export default abi;
 export { address };
