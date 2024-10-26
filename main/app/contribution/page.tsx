@@ -64,12 +64,11 @@ export default function Contribution() {
   return (
     <>
       <Navbar />
-      <div className="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-10 pl-10">
+      <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-10 border-t-2 border-secondary gap-6">
         {loading ? (
           <Loader />
         ) : address ? (
-          contriCamps &&
-          contriCamps.length > 0 ? (
+          contriCamps && contriCamps.length > 0 ? (
             contriCamps.map((camp, index) => {
               const raisedInAIA = Number(camp.raised) / 10 ** 18;
               const goalInAIA = Number(camp.goal) / 10 ** 18;

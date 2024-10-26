@@ -142,7 +142,7 @@ const AddCampaign = () => {
     <>
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger>
-          <Button className="text-primary-foreground border-primary-foreground">
+          <Button className="text-primary-foreground border-primary-foreground px-2">
             <TiPlus className="mr-1 ml-0" />
             Make a Campaign
           </Button>
@@ -226,7 +226,7 @@ const AddCampaign = () => {
                                 !field.value && "text-muted-foreground"
                               )}
                             >
-                              <CalendarIcon className="mr-2 h-4 w-4" />
+                              <CalendarIcon className="mr-0.5 h-4 w-4" />
                               {field.value ? (
                                 format(field.value, "PPP")
                               ) : (

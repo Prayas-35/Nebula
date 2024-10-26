@@ -75,6 +75,7 @@ const config = {
     },
     fontFamily: {
       fredoka: ["Fredoka", "sans-serif"], // Define your font here
+      dyna: ["DynaPuff", "sans-serif"], // Define your font here{
     },
   },
   plugins: [require("tailwindcss-animate")],
