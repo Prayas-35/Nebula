@@ -14,7 +14,7 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
-import { z, isValid } from "zod";
+import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -28,6 +28,7 @@ const formSchema = z.object({
 });
 
 export function MyCampaigns(props: { data: Campaign[] }) {
+  const [dialogOpen, setDialogOpen] = useState<Record<number, boolean>>({});
   const [transactionStatus, setTransactionStatus] = useState<string | null>(
     null
   );
@@ -36,9 +37,7 @@ export function MyCampaigns(props: { data: Campaign[] }) {
   );
   const { writeContractAsync } = useWriteContract();
   const { address } = useAccount();
-  console.log("props:", props.data);
   const myCamps = props.data;
-  const [open, setOpen] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -47,10 +46,13 @@ export function MyCampaigns(props: { data: Campaign[] }) {
     },
   });
 
+  const handleDialogToggle = (index: number, isOpen: boolean) => {
+    setDialogOpen((prev) => ({ ...prev, [index]: isOpen }));
+  };
+
   async function withdrawFunds(idx: number, proposal: string) {
-    console.log("Withdraw funds", idx);
+    setTransactionStatus("Processing...");
     try {
-      // Call the smart contract function with form data using writeContractAsync
       const tx = await writeContractAsync(
         {
           address: contractAddress,
@@ -61,15 +63,14 @@ export function MyCampaigns(props: { data: Campaign[] }) {
         {
           onSuccess(data: any) {
             console.log("Transaction successful!", data);
-            // setTransactionStatus("Transaction submitted!");
-            // setTransactionHash(data);
+            setTransactionStatus("Transaction submitted!");
+            setTransactionHash(data);
           },
           onSettled(data: any, error: any) {
             if (error) {
               setTransactionStatus("Transaction failed.");
               console.error("Error on settlement:", error);
             } else {
-              console.log("Transaction settled:", data);
               setTransactionStatus("Transaction confirmed!");
               setTransactionHash(data);
             }
@@ -95,8 +96,7 @@ export function MyCampaigns(props: { data: Campaign[] }) {
       <h2 className="text-2xl font-bold">My Campaigns</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {address ? (
-          myCamps &&
-          myCamps.length > 0 ? (
+          myCamps && myCamps.length > 0 ? (
             myCamps.map((camp, index) => (
               <div
                 className="w-96 relative rounded-3xl overflow-hidden max-w-full bg-gradient-to-r dark:from-[#1D2235] dark:to-[#121318] from-[#E8ECF3] to-[#F5F7FA] my-10"
@@ -123,19 +123,22 @@ export function MyCampaigns(props: { data: Campaign[] }) {
                       Goal: {Number(camp.goal) / 10 ** 18} AIA
                     </button>
                     <div className="flex justify-between items-center mt-4 w-full gap-10 text-base">
-                      <ProgressDemo
-                        raised={Number(camp.raised)}
-                        goal={Number(camp.goal)}
-                      />
+                      {!camp.isWithdrawn && (
+                        <ProgressDemo
+                          raised={Number(camp.raised)}
+                          goal={Number(camp.goal)}
+                        />
+                      )}
                       <button
-                        className={`px-3 py-4 w-[45%] rounded-full ${
+                        className={`px-3 py-4 w-[45%] rounded-[10%] ${
                           camp.isWithdrawn ? `bg-zinc-800` : `bg-[#1ED760] `
-                        } font-bold text-white text-xs tracking-widest uppercase transform hover:scale-105  transition-colors duration-200`}
+                        } font-bold text-white text-xs tracking-widest uppercase transform hover:scale-105 transition-colors duration-200`}
                         onClick={() => {
                           if (camp.isWithdrawn) {
-                            alert("Funds already withdrawn.");
+                            handleDialogToggle(index, true);
+                            alert("Already withdrawn funds.");
                           } else if (camp.raised >= camp.goal) {
-                            setOpen(true);
+                            handleDialogToggle(index, true);
                           } else {
                             alert("Goal not reached. Cannot withdraw funds.");
                           }
@@ -146,22 +149,22 @@ export function MyCampaigns(props: { data: Campaign[] }) {
                     </div>
                   </motion.div>
                 </div>
-                <Dialog open={open} onOpenChange={setOpen}>
-                  {address ? (
+                <Dialog
+                  open={dialogOpen[index]}
+                  onOpenChange={(isOpen) => handleDialogToggle(index, isOpen)}
+                >
+                  {!camp.isWithdrawn ? (
                     <DialogContent className="w-full border-none">
                       <Form {...form}>
                         <form
                           onSubmit={form.handleSubmit(async (data) => {
-                            // Validate the form data
                             const result = formSchema.safeParse(data);
                             if (result.success) {
-                              // Call withdrawFunds with the campaign id and close dialog if valid
-                              console.log("Proposal:", data.proposal);
                               await withdrawFunds(
                                 Number(camp.id),
                                 data.proposal
                               );
-                              setOpen(false);
+                              handleDialogToggle(index, false);
                             }
                           })}
                           className="space-y-4"
@@ -183,30 +186,17 @@ export function MyCampaigns(props: { data: Campaign[] }) {
                             )}
                           />
                           <div className="flex justify-between w-[100%] font-fredoka items-center">
-                            <span>
-                              Check out this{" "}
-                              <a
-                                href="https://jmp.sh/s/eZBvzt1GGs68cvbOdMAk"
-                                className="text-text font-bold text-yellow-400 underline"
-                                target="_blank"
-                              >
-                                Example
-                              </a>{" "}
-                              for inspiration
-                            </span>
                             <Button type="submit">
                               <span>Withdraw</span>
                             </Button>
                           </div>
                         </form>
                       </Form>
-                      <p className="text-white text-center mt-4">
-                        {camp.proposal}
-                      </p>
                     </DialogContent>
                   ) : (
-                    <DialogContent className="w-68">
-                      <p>Please connect your wallet to fund this campaign.</p>
+                    <DialogContent className="w-full border-none">
+                      <h1 className="font-fredoka font-bold">Proposal</h1>
+                      <p className="text-center">{camp.proposal}</p>
                     </DialogContent>
                   )}
                 </Dialog>
