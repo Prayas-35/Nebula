@@ -61,10 +61,24 @@ export default function Providers(props: {
 
   const selectedTheme =
     theme === "dark"
-      ? darkTheme()
+      ? darkTheme({
+        accentColor: "#7b3fe4",
+        accentColorForeground: "white",
+        borderRadius: "small",
+        fontStack: "system",
+        overlayBlur: "small",
+      })
       : theme === "light"
-      ? lightTheme()
-      : midnightTheme();
+        ? lightTheme({
+          borderRadius: "small",
+          fontStack: "system",
+          overlayBlur: "small",
+        })
+        : midnightTheme({
+          borderRadius: "small",
+          fontStack: "system",
+          overlayBlur: "small",
+        });
 
   return (
     <WagmiProvider config={config} initialState={props.initialState}>
@@ -74,13 +88,13 @@ export default function Providers(props: {
           theme={selectedTheme}
           coolMode
           modalSize="wide"
-          theme={darkTheme({
-            accentColor: "#7b3fe4",
-            accentColorForeground: "white",
-            borderRadius: "small",
-            fontStack: "system",
-            overlayBlur: "small",
-          })}
+        // theme={darkTheme({
+        //   accentColor: "#7b3fe4",
+        //   accentColorForeground: "white",
+        //   borderRadius: "small",
+        //   fontStack: "system",
+        //   overlayBlur: "small",
+        // })}
         >
           {props.children}
         </RainbowKitProvider>
