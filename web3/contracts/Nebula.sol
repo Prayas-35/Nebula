@@ -80,7 +80,21 @@ contract Nebula {
         }
 
         campaign.raised += _amount;
-        campaign.funders.push(Funders(msg.sender, _amount));
+
+        // Check if the funder already exists in the funders array
+        bool isExistingFunder = false;
+        for (uint256 i = 0; i < campaign.funders.length; i++) {
+            if (campaign.funders[i].funder == msg.sender) {
+                campaign.funders[i].amount += _amount; // Update existing funder's amount
+                isExistingFunder = true;
+                break;
+            }
+        }
+
+        // If the funder is new, add them to the array
+        if (!isExistingFunder) {
+            campaign.funders.push(Funders(msg.sender, _amount));
+        }
     }
 
     function withdrawFunds(
