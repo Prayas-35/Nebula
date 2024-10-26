@@ -7,7 +7,7 @@ export const aia = {
   id: 1320,
   name: "Aitd Testnet",
   rpcUrls: {
-    default: { http: ["http://http-testnet.aitd.io"] },
+    default: { http: ["https://aia-dataseed1-testnet.aiachain.org"] },
   },
   nativeCurrency: {
     name: "AITD Testnet",
