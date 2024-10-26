@@ -43,7 +43,7 @@ View ongoing campaigns, total amounts raised, and voting results.
 
 ## Installation
 
-Although we have a publicly accessible URL at [Nebula](#vercelLInk), here's the guide for installation into your local machine:
+Although we have a publicly accessible URL at [Nebula](https://nebula-v1.vercel.app), here's the guide for installation into your local machine:
 
 Clone the repository:
 
@@ -59,7 +59,7 @@ npm i
 npm run dev
 ```
 
-The contract is already deployed at the address `0xDE115676F736F154eEF8398A37e4ACB4d61892e6` at AIA Test Network.
+The contract is already deployed at the address `0xB682951A1aDdB4759efbAbF4440EeB2f3006FA16` at AIA Test Network.
 Have fun navigating through our application. Cheers!
 
 We welcome contributions! Please fork the repository and submit a pull request.
