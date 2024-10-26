@@ -84,7 +84,10 @@ export default function Contribution() {
           size={24}
           onClick={() => handleActivity()}
         /> */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-10 gap-6 ">
+        <div className={`${contriCamps && contriCamps.length > 0
+          ? "mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 p-10 gap-6"
+          : "flex items-center justify-center w-full h-full"
+          }`}>
           {loading ? (
             <Loader />
           ) : address ? (
@@ -143,7 +146,7 @@ export default function Contribution() {
                 );
               })
             ) : (
-              <p>No campaigns available. Start Contributing!</p>
+              <p className="text-center">No Contributions yet. Start Contributing!</p>
             )
           ) : (
             <p>Please connect wallet.</p>
