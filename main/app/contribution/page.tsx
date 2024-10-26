@@ -15,6 +15,12 @@ import { StarsBackground } from "@/components/ui/stars-background";
 const contractABI = abi;
 const contractAddress = address;
 
+interface Funder {
+  funder: string;
+  amount: number;
+  votingPower: number;
+}
+
 function Loader() {
   return (
     <div className="flex justify-center items-center w-[90vw] h-[65vh]">
@@ -24,7 +30,7 @@ function Loader() {
 }
 
 export default function Contribution() {
-  let userAddress;
+  let userAddress: any;
   const [contriCamps, setContriCamps] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [activity, setActivity] = useState<[]>([]);
@@ -65,6 +71,9 @@ export default function Contribution() {
   function handleActivity() {
     alert("Activity clicked");
   }
+
+  const resapat = data;
+  console.log("Data: ", resapat);
 
   return (
     <>
@@ -117,6 +126,17 @@ export default function Contribution() {
                           <span>Raised: {raisedInAIA.toFixed(2)} AIA</span>
                           <span>Goal: {goalInAIA.toFixed(2)} AIA</span>
                         </div>
+
+                        {camp.funders.map((funder: Funder, index: number) => {
+                          return (
+                            funder.funder === userAddress && (
+                              <p>
+                                Your Voting Power is:{" "}
+                                <strong>{Number(funder.votingPower)}%</strong>
+                              </p>
+                            )
+                          );
+                        })}
                       </div>
                     </CardContent>
                   </Card>
