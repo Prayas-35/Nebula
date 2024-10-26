@@ -87,7 +87,9 @@ contract Nebula {
         for (uint256 i = 0; i < campaign.funders.length; i++) {
             if (campaign.funders[i].funder == msg.sender) {
                 campaign.funders[i].amount += _amount; // Update existing funder's amount
-                campaign.funders[i].votingPower = campaign.funders[i].amount / campaign.goal * 100;
+                campaign.funders[i].votingPower =
+                    (campaign.funders[i].amount * 100) /
+                    campaign.goal; // Updated voting power calculation
                 isExistingFunder = true;
                 break;
             }
@@ -95,7 +97,10 @@ contract Nebula {
 
         // If the funder is new, add them to the array
         if (!isExistingFunder) {
-            campaign.funders.push(Funders(msg.sender, _amount, (_amount / campaign.goal * 100)));
+            uint256 initialVotingPower = (_amount * 100) / campaign.goal; // Calculate initial voting power
+            campaign.funders.push(
+                Funders(msg.sender, _amount, initialVotingPower)
+            );
         }
     }
 
