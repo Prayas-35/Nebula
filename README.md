@@ -1,6 +1,7 @@
 # Nebula - A Decentralized Crowdfunding Platform (DAO-style Fundraising)
 
 ## Overview:
+### The contract is deployed at the address `0xB682951A1aDdB4759efbAbF4440EeB2f3006FA16` at AIA Test Network. Check out our [AIAScan URL](https://testnet.aiascan.com/address/0xB682951A1aDdB4759efbAbF4440EeB2f3006FA16).
 
 Nebula aims to create a decentralized crowdfunding platform where users can raise funds for their projects. Donors receive voting rights proportional to their contributions, allowing them to influence how funds are spent (Currently undergoing development).
 The Decentralized Crowdfunding Platform aims to revolutionize the way projects are funded by leveraging blockchain technology to create a transparent and democratic system for raising and managing funds. Our platform allows individuals and organizations to launch fundraising campaigns for various projects, from social initiatives to innovative startups.
@@ -58,8 +59,6 @@ cd main
 npm i
 npm run dev
 ```
-
-The contract is already deployed at the address `0xB682951A1aDdB4759efbAbF4440EeB2f3006FA16` at AIA Test Network.
 Have fun navigating through our application. Cheers!
 
 We welcome contributions! Please fork the repository and submit a pull request.
